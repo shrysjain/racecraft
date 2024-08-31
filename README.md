@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# RaceCraft 🏎️
 
-## Getting Started
+RaceCraft is an engaging simulation tool that allows users to create and simulate races with custom teams, drivers, and circuits. By leveraging dynamic race simulation and interactive visualizations, RaceCraft offers an immersive experience for motorsport enthusiasts and data lovers alike.
 
-First, run the development server:
+## Features
 
-```bash
+- **Race Simulation**: Simulate races by selecting drivers, circuits, and starting lineups. View simulated results with positions and points.
+- **Leaderboard**: Display a sorted leaderboard showing driver positions and points based on race results.
+- **Timelapse Visualization**: Watch a timelapse of drivers' positions on the circuit throughout the race.
+- **Dynamic Updates**: Experience real-time race updates with random elements like crashes and upsets to enhance the excitement.
+- **Responsive Design**: Fully functional and visually appealing across all devices and screen sizes.
+
+## Tech Stack
+
+- **Next.js 14**: For server-side rendering and static site generation.
+- **TypeScript**: For type safety and robust development.
+- **TailwindCSS**: For modern, responsive design.
+- **shadcn/ui**: For UI components and elements.
+- **Recoil**: For state management.
+
+## Try it Out!
+
+You can explore RaceCraft live at [race-craft.vercel.app](https://race-craft.vercel.app). Enjoy creating and simulating your own races!
+
+To run a development instance locally, clone this repository, install dependencies with npm (`npm install`).
+
+Finally, run the following command to start the development server:
+
+```sh
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contributing
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+We welcome contributions to enhance RaceCraft. To contribute, please fork the repository and submit a pull request with your changes.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Licensing
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.

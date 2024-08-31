@@ -1,21 +1,22 @@
 "use client";
 
-import { useRecoilValue } from "recoil";
-import { raceResultsState } from "../utils/state";
+import { RaceResult } from "../utils/types";
 
-export default function Leaderboard() {
-  const raceResults = useRecoilValue(raceResultsState);
+interface LeaderboardProps {
+  results: RaceResult[];
+}
 
+export default function Leaderboard({ results }: LeaderboardProps) {
   return (
-    <div>
-      <h2 className="text-2xl font-semibold mb-4">Leaderboard</h2>
-      <ul>
-        {raceResults.map((result) => (
-          <li key={result.driverId} className="mb-2">
-            {result.position}. {result.driverName} - {result.points} points
+    <div className="mt-6">
+      <h2 className="text-2xl font-semibold mb-4">Final Leaderboard</h2>
+      <ol className="list-decimal pl-6">
+        {results.map((result) => (
+          <li key={result.driver.id} className="mb-2">
+            {result.driver.name} - Position {result.position}
           </li>
         ))}
-      </ul>
+      </ol>
     </div>
   );
 }

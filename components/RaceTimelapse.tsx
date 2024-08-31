@@ -1,27 +1,36 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRecoilValue } from "recoil";
-import { raceResultsState } from "../utils/state";
+import { useEffect, useState } from "react";
+import { RaceResult } from "../utils/types";
 
-export default function RaceTimelapse() {
-  const raceResults = useRecoilValue(raceResultsState);
-  const [currentFrame, setCurrentFrame] = useState(0);
+interface RaceTimelapseProps {
+  results: RaceResult[];
+}
+
+export default function RaceTimelapse({ results }: RaceTimelapseProps) {
+  const [positions, setPositions] = useState<number[]>(results.map(() => 0));
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentFrame((prev) => (prev + 1) % raceResults.length);
-    }, 1000);
+      setPositions((prevPositions) =>
+        prevPositions.map((pos, index) => pos + Math.random() * 10)
+      );
+    }, 500);
 
     return () => clearInterval(interval);
-  }, [raceResults.length]);
+  }, []);
 
   return (
-    <div>
-      <h2 className="text-2xl font-semibold mb-4">Race Timelapse</h2>
-      <div>
-        <pre>{JSON.stringify(raceResults[currentFrame], null, 2)}</pre>
-      </div>
+    <div className="flex flex-col space-y-4">
+      {results.map((result, index) => (
+        <div key={result.driver.id} className="flex items-center space-x-4">
+          <span className="w-16 text-right">{result.driver.name}</span>
+          <div
+            className="h-4 bg-blue-500"
+            style={{ width: `${positions[index]}px` }}
+          ></div>
+        </div>
+      ))}
     </div>
   );
 }

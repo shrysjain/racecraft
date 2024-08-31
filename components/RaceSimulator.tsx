@@ -9,11 +9,13 @@ import {
 import { simulateRace } from "../utils/api";
 import { useState } from "react";
 import LoadingSpinner from "./LoadingSpinner";
+import { RaceResult } from "../utils/types";
 
 export default function RaceSimulator() {
   const selectedDrivers = useRecoilValue(selectedDriversState);
   const selectedCircuit = useRecoilValue(selectedCircuitState);
-  const [raceResults, setRaceResults] = useRecoilState(raceResultsState);
+  const [raceResults, setRaceResults] =
+    useRecoilState<RaceResult[]>(raceResultsState);
   const [loading, setLoading] = useState(false);
 
   const handleSimulateRace = async () => {
@@ -21,10 +23,17 @@ export default function RaceSimulator() {
       alert("Please select drivers and a circuit");
       return;
     }
-    setLoading(true);
-    const results = await simulateRace(selectedDrivers, selectedCircuit);
-    setRaceResults(results as any[]);
-    setLoading(false);
+
+    try {
+      setLoading(true);
+      const results = await simulateRace(selectedDrivers, selectedCircuit);
+      setRaceResults(results as any[]);
+    } catch (error) {
+      console.error("Error simulating race:", error);
+      alert("An error occurred while simulating the race.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

@@ -19,14 +19,16 @@ export default function CircuitSelector() {
   }, []);
 
   return (
-    <div>
-      <h2 className="text-2xl font-semibold mb-4">Select Circuit</h2>
+    <div className="mb-6">
+      <h2 className="text-2xl font-semibold mb-2">Select Circuit</h2>
       <select
         value={selectedCircuit ?? ""}
         onChange={(e) => setSelectedCircuit(Number(e.target.value))}
-        className="p-2 border rounded"
+        className="p-2 border rounded w-full bg-white"
       >
-        <option value="">Select a circuit</option>
+        <option value="" disabled>
+          Select a circuit
+        </option>
         {circuits.map((circuit) => (
           <option key={circuit.id} value={circuit.id}>
             {circuit.name}

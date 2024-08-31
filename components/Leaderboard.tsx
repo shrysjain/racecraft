@@ -1,22 +1,34 @@
 "use client";
 
-import { RaceResult } from "../utils/types";
+import { useRecoilValue } from "recoil";
+import { raceResultsState } from "../utils/state";
 
-interface LeaderboardProps {
-  results: RaceResult[];
-}
+export default function Leaderboard() {
+  const raceResults = useRecoilValue(raceResultsState);
 
-export default function Leaderboard({ results }: LeaderboardProps) {
+  if (!raceResults || raceResults.length === 0) {
+    return <div>No race results available for the leaderboard.</div>;
+  }
+
+  // Check and log the race results
+  console.log("Race Results for Leaderboard:", raceResults);
+
+  // Sort results by position (ascending)
+  const sortedResults = [...raceResults].sort(
+    (a, b) => a.position - b.position
+  );
+
   return (
-    <div className="mt-6">
-      <h2 className="text-2xl font-semibold mb-4">Final Leaderboard</h2>
-      <ol className="list-decimal pl-6">
-        {results.map((result) => (
-          <li key={result.driver.id} className="mb-2">
-            {result.driver.name} - Position {result.position}
+    <div>
+      <h2>Leaderboard</h2>
+      <ul>
+        {sortedResults.map((result) => (
+          <li key={result.driverId}>
+            {result.driverName} - Position: {result.position}, Points:{" "}
+            {result.points}
           </li>
         ))}
-      </ol>
+      </ul>
     </div>
   );
 }

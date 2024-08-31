@@ -11,7 +11,9 @@ export interface Circuit {
   laps: number;
 }
 
-export interface RaceResult {
-  driver: Driver;
+export type RaceResult = {
+  driverId: number;
+  driverName: string;
   position: number;
-}
+  points: number;
+};

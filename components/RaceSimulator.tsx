@@ -9,7 +9,7 @@ import {
 import { simulateRace } from "../utils/api";
 import { useState } from "react";
 import LoadingSpinner from "./LoadingSpinner";
-import { RaceResult } from "../utils/types";
+import { Driver, RaceResult } from "../utils/types";
 
 export default function RaceSimulator() {
   const selectedDrivers = useRecoilValue(selectedDriversState);
@@ -26,7 +26,15 @@ export default function RaceSimulator() {
 
     try {
       setLoading(true);
-      const results = await simulateRace(selectedDrivers, selectedCircuit);
+      const results = await simulateRace(
+        selectedDrivers.map((driver: Driver) => ({
+          id: driver.id,
+          name: driver.name,
+          skillRating: driver.skillRating,
+        })),
+        selectedCircuit
+      );
+      console.log("Race Simulation Results:", results);
       setRaceResults(results as any[]);
     } catch (error) {
       console.error("Error simulating race:", error);

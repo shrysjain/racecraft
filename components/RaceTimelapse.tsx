@@ -23,8 +23,8 @@ export default function RaceTimelapse({ results }: RaceTimelapseProps) {
   return (
     <div className="flex flex-col space-y-4">
       {results.map((result, index) => (
-        <div key={result.driver.id} className="flex items-center space-x-4">
-          <span className="w-16 text-right">{result.driver.name}</span>
+        <div key={result.driverId} className="flex items-center space-x-4">
+          <span className="w-16 text-right">{result.driverName}</span>
           <div
             className="h-4 bg-blue-500"
             style={{ width: `${positions[index]}px` }}

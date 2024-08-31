@@ -25,8 +25,9 @@ export default function DriverSelector() {
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = Number(e.target.value);
-    if (!selectedDrivers.includes(value)) {
-      setSelectedDrivers((prev) => [...prev, value]);
+    const driver = drivers.find((driver) => driver.id === value);
+    if (driver && !selectedDrivers.includes(driver)) {
+      setSelectedDrivers((prev) => [...prev, driver]);
     }
   };
 

@@ -23,7 +23,7 @@ export default function Home() {
       {raceResults && (
         <>
           <RaceTimelapse results={raceResults} />
-          <Leaderboard results={raceResults} />
+          <Leaderboard key={Date.now()} />
         </>
       )}
     </div>

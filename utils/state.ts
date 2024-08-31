@@ -1,4 +1,5 @@
 import { atom } from "recoil";
+import { Circuit, Driver } from "./types";
 
 export const driverStandingsState = atom({
   key: "driverStandingsState",
@@ -20,12 +21,12 @@ export const selectedTeamState = atom<number | null>({
   default: null,
 });
 
-export const selectedDriversState = atom<number[]>({
+export const selectedDriversState = atom<Driver[]>({
   key: "selectedDriversState",
   default: [],
 });
 
-export const selectedCircuitState = atom<number | null>({
+export const selectedCircuitState = atom<Circuit | null>({
   key: "selectedCircuitState",
   default: null,
 });
